@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+  </head>
+
+  <body>
+    <div class="container" id="wrapper">
+<h1> Welcome to the Quiz</h1>
+ <form id='quiz' id='questionForm'></form>
+ <div id='button1'  > <button class="btn btn-primary">Answer 1</button></div>
+ <div id='button2' > <button class="btn btn-primary">Answer 2</button></div>
+ <div id='button3' > <button class="btn btn-primary">Answer 3</button></div>
+ <div id='button4' > <button class="btn btn-primary">Answer 4</button></div>
+ <div id ='results'></div>
+
+ <div id='time'> </div>
+ </div>
+
+
+    <script>
+
+// Timer
+
+var time = document.querySelector('#time')
+
+var totaltime = 60;
+
+function countDown (){
+
+  var timerinterval = setInterval(function(){
+    totaltime --;
+
+    if(totaltime === 0){
+      clearInterval(timerinterval)
+    }
+    else{
+      time.textContent = totaltime
+
+    }
+
+
+    console.log(totaltime);
+
+  }, 1000);
+
+}
+
+countDown();
+
+
+
+var questionList = [
+{
+  question: 'This is Question Testing 1',
+  answers: {
+      a: 'Answer #1 is the correct answer',
+      b: 'Answer #2',
+      c: 'Answer #3'
+  },
+  correctAnswer: 1
+},
+{
+  question: 'This is Question Testing 2',
+  answers: {
+      a: 'Answer set #2',
+      b: 'Answer set #2',
+      c: 'Answer set #2'
+  },
+  correctAnswer: 2
+}
+
+];
+
+console.log(questionList[0].question);
+
+var quiz = $('#quiz');
+var questionForm =$('#questionForm')
+var button = $('#button');
+var results = $('#results');
+var score = 0
+
+var response = '';
+
+var newDiv = $('<div>');
+newDiv.text(questionList[0].question);
+quiz.append(newDiv);
+
+
+
+
+
+//for ( var i = 0; questionsList.length; i++){
+
+
+
+    
+
+    /* if (response === questionList.correctAnswer){
+        score ++;
+
+    }
+    else{
+        alert('wrong')
+    } */
+//}
+
+
+
+    
+
+    </script>
+
+  </body>
+
+</html>
