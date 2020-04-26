@@ -13,67 +13,48 @@
 
   <body>
     <div class="container" id="wrapper">
-<h1> Welcome to the Quiz</h1>
- <form id='quiz' id='questionForm'></form>
- <div id='button1'  > <button class="btn btn-primary">Answer 1</button></div>
- <div id='button2' > <button class="btn btn-primary">Answer 2</button></div>
- <div id='button3' > <button class="btn btn-primary">Answer 3</button></div>
- <div id='button4' > <button class="btn btn-primary">Answer 4</button></div>
+
+<div class='start'>
+ <h1> Welcome to the Quiz</h1>
+ <button id='startQuiz'> Press here to start the quiz!</button>
+</div>
+
+ <div id='quiz'> </div>
+<div id="buttons"></div>
+
  <div id ='results'></div>
 
  <div id='time'> </div>
- </div>
+
+</div>
 
 
     <script>
-
-// Timer
-
-var time = document.querySelector('#time')
-
-var totaltime = 60;
-
-function countDown (){
-
-  var timerinterval = setInterval(function(){
-    totaltime --;
-
-    if(totaltime === 0){
-      clearInterval(timerinterval)
-    }
-    else{
-      time.textContent = totaltime
-
-    }
+   $(document).ready(function() {
 
 
-    console.log(totaltime);
-
-  }, 1000);
-
-}
-
-countDown();
-
+// Questions Array and Nested Objects
 
 
 var questionList = [
-{
+  {
   question: 'This is Question Testing 1',
-  answers: {
-      a: 'Answer #1 is the correct answer',
-      b: 'Answer #2',
-      c: 'Answer #3'
-  },
+  answers: [
+      'Answer #1 is the correct answer',
+      'Answer #2',
+      'Answer #3',
+      'Answer #4'
+  ],
   correctAnswer: 1
 },
 {
   question: 'This is Question Testing 2',
-  answers: {
-      a: 'Answer set #2',
-      b: 'Answer set #2',
-      c: 'Answer set #2'
-  },
+  answers: [
+      'Answer set #2 Answer 1',
+      'Answer set #2 Answer 2' ,
+      'Answer set #2 Answer 3',
+      'Answer set #2 Answer 4'
+  ],
   correctAnswer: 2
 }
 
@@ -81,23 +62,122 @@ var questionList = [
 
 console.log(questionList[0].question);
 
+// Variables
+
+var time = document.querySelector('#time');
+var startButton = $('#startQuiz')
+
+var totaltime = 60;
+
+
 var quiz = $('#quiz');
 var questionForm =$('#questionForm')
-var button = $('#button');
-var results = $('#results');
+
 var score = 0
 
 var response = '';
 
+//Click Events
+
+$('#startQuiz').on('click', function(){
+  startQuiz();
+  countDown();
+  questionCount++;
+  console.log(questionCount)
+  $('#startQuiz').text("Press here for next question")
+
+});
+
+$('#buttons').on('click', function(){
+  console.log('Trenton')
+});
+
+var questionCount = 0
+
+
+function startQuiz(){
+
 var newDiv = $('<div>');
-newDiv.text(questionList[0].question);
+newDiv.text(questionList[questionCount].question);
 quiz.append(newDiv);
 
+questionList[questionCount].answers.forEach(function(choice, index) {
+
+var answerButton = $("<button>");
+  answerButton.addClass("btn btn-primary");
+  answerButton.attr('data-letter', choice);
+  answerButton.text(choice);
+  $("#buttons").append(answerButton);
+  
+
+  
+})
+
+
+}
+
+
+
+/* function startQuiz(){
+
+ for (var i = 0; i < questionList.length; i++){
+
+var newDiv = $('<div>');
+newDiv.text(questionList[i].question);
+quiz.append(newDiv);
+
+//var answerButton = $("<button>");
+
+//  answerButton.addClass("btn btn-primary");
+
+ // answerButton.attr("data-letter", questionList[i].answers[i]);
+  
+ // answerButton.text(questionList[i].answers[i]);
+//$("#buttons").append(answerButton);
+
+$('#startQuiz').hide();
+countDown();
+
+
+questionList[i].answers.forEach(function(choice, index) {
+
+  var answerButton = $("<button>");
+    answerButton.addClass("btn btn-primary");
+    answerButton.attr('data-letter', choice);
+    answerButton.text(choice);
+    $("#buttons").append(answerButton);
+  
+    
+})
+
+};
+
+quiz.append(questionList[currentQuestionIndex].question);
+
+questionList[currentQuestionIndex].answers.forEach(function(choice, index){
+
+  var answerButton = $("<button>");
+    answerButton.addClass("btn btn-primary");
+    answerButton.attr('data-letter', choice);
+    answerButton.text(choice);
+    $("#buttons").append(answerButton);
+})
+
+} */
 
 
 
 
-//for ( var i = 0; questionsList.length; i++){
+
+function showQuestions(){}
+function checkAnswer(){
+function endGame(){
+  clearInterval
+}
+
+
+
+  //for ( var i = 0; questionsList.length; i++){
 
 
 
@@ -112,10 +192,37 @@ quiz.append(newDiv);
     } */
 //}
 
+};
+
+function countDown (){
+
+var timerinterval = setInterval(function(){
+  totaltime --;
+
+  if(totaltime === 0){
+    clearInterval(timerinterval)
+  }
+  else{
+    time.textContent = totaltime + ' Seconds Remaining'
+
+  }
+
+
+  console.log(totaltime);
+
+}, 1000);
+
+}
+
+
+
+
+
+
 
 
     
-
+});
     </script>
 
   </body>
