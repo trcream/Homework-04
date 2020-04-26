@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   </head>
 
   <body>
+    <div id='testing'></div>
     <div class="container" id="wrapper">
 
 <div class='start'>
@@ -19,22 +20,23 @@
  <button id='startQuiz'> Press here to start the quiz!</button>
 </div>
 
- <div id='quiz'> </div>
+<div id='quiz'> </div>
 <div id="buttons"></div>
 
- <div id ='results'></div>
 
- <div id='time'> </div>
+<div id ='results'></div>
+<div id='time'> </div>
 
 
 </div>
 
 
-    <script>
+<script type="text/javascript"> 
    $(document).ready(function() {
 
 
 // Questions Array and Nested Objects
+
 
 
 var questionList = [
@@ -81,7 +83,7 @@ var questionList = [
 
 ];
 
-console.log(questionList[0].question);
+console.log(questionList[1].correctAnswer);
 
 // Variables
 
@@ -121,6 +123,8 @@ $('#startQuiz').on('click', function(){
 
 //New Questions
 
+
+
 $('#buttons').on('click', function(){
 
   $("#buttons").empty();
@@ -128,7 +132,7 @@ $('#buttons').on('click', function(){
   questionCount++;
   console.log(questionCount)
 
-  var newDiv = $('<div>');
+var newDiv = $('<div>');
 newDiv.text(questionList[questionCount].question);
 quiz.append(newDiv);
 
@@ -143,6 +147,25 @@ var answerButton = $("<button>");
 
 
 });
+
+// Check if the answer is correct
+$("#buttons").delegate(".btn", "click", function(){
+
+  var userAnswer = document.querySelectorAll('.btn')
+  console.log(userAnswer);
+
+  if (userAnswer === questionList[questionCount].correctAnswer ){
+
+    alert('You are correct')
+  }
+  else{
+
+    alert('You are wrong!')
+  }
+
+
+});
+
 
 
 
@@ -161,37 +184,12 @@ var answerButton = $("<button>");
   answerButton.text(choice);
   $("#buttons").append(answerButton);
   
-
-  
+ 
 })
 
 
 }
 
-
-function checkAnswer(){
-function endGame(){
-  clearInterval
-}
-
-
-
-  //for ( var i = 0; questionsList.length; i++){
-
-
-
-    
-
-    /* if (response === questionList.correctAnswer){
-        score ++;
-
-    }
-    else{
-        alert('wrong')
-    } */
-//}
-
-};
 
 function countDown (){
 
@@ -212,10 +210,6 @@ var timerinterval = setInterval(function(){
 }, 1000);
 
 }
-
-
-
-
 
 
 
