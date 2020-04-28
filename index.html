@@ -48,7 +48,7 @@ var questionList = [
       'Cat',
       'Lizzard'
   ],
-  correctAnswer: 0
+  correctAnswer: 'Dog'
 },
 {
   question: 'What is the best kind of car to own?',
@@ -58,7 +58,7 @@ var questionList = [
       'Lamborghini',
       'Fiat'
   ],
-  correctAnswer: 2
+  correctAnswer: 'BMW'
 },
 {
   question: 'How hard is it to write code?',
@@ -68,7 +68,7 @@ var questionList = [
       'Super hard',
       'Really super hard'
   ],
-  correctAnswer: 2
+  correctAnswer: 'Hard'
 },
 {
   question: 'What is the best kind of music?',
@@ -78,10 +78,12 @@ var questionList = [
       'Answer set #2 Answer 3',
       'Answer set #2 Answer 4'
   ],
-  correctAnswer: 2
+  correctAnswer: 'Answer set #2 Answer 1'
 }
 
 ];
+
+console.log(questionList)
 
 console.log(questionList[1].correctAnswer);
 
@@ -151,20 +153,33 @@ var answerButton = $("<button>");
 // Check if the answer is correct
 $("#buttons").delegate(".btn", "click", function(){
 
-  var userAnswer = document.querySelectorAll('.btn')
+  var userAnswer = document.querySelector('.btn').textContent
   console.log(userAnswer);
+  console.log(questionList[questionCount].correctAnswer)
+  console.log(questionCount)
 
   if (userAnswer === questionList[questionCount].correctAnswer ){
 
-    alert('You are correct')
+    score++;
+    totaltime = totaltime + 10;
+
+    alert('You are correct plus 10 seconds!')
   }
   else{
 
-    alert('You are wrong!')
+    totaltime = totaltime - 10;
+
+    alert('You are wrong minus 10 seconds!')
   }
 
 
 });
+
+if (questionCount === 2){
+  alert('this is working')
+}
+
+
 
 
 
