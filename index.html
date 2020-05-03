@@ -8,26 +8,59 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   </head>
 
   <body>
-    <div id='testing'></div>
+
+
+    
     <div class="container" id="wrapper">
+    
+    <div class='row'>
+
+      <div class ='col-md-3'> <div id='lastScore'></div> 
+      <div id ='results'></div>
+    </div>
+      <div class ='col-md-6'> 
+
+    <div id='testing'></div>
+   
 
 <div class='start'>
- <h1> Welcome to the Quiz</h1>
+ <h1 id=> Welcome to the Quiz</h1>
  <button id='startQuiz'> Press here to start the quiz!</button>
 </div>
 
 <div id='quiz'> </div>
 <div id="buttons"></div>
-<h1 id ='results'></h1>
-<div id='lastScore'></div>
-<div id='time'> </div>
+
+    
+  </div>
+
+  <div class ='col-md-3'>
+   
+    <div id='time'> </div>  
+  
+  </div>
+</div>
+
+ 
+
 
 
 </div>
+<div class='row'>
+  <div class='col-md-3'></div>
+  <div class='col-md-6'>
+
+   
+    
+  </div>
+
+
+  </div>
 
 
 <script type="text/javascript"> 
@@ -36,10 +69,6 @@
 
 // Questions Array and Nested Objects
 
-
-/* console.log(customer.phoneNumber[0].number)
-    // Step 5: Log the Fax Number below using console.log
-    console.log(customer.phoneNumber[1].number) */
 
 
 var questionList = [
@@ -114,8 +143,10 @@ var questionCount = 0
 $('#startQuiz').on('click', function(){
   startQuiz();
   countDown();
+  lastScore()
   console.log(questionCount)
   $('#startQuiz').hide();
+  $('h1').hide();
 
 });
 
@@ -124,8 +155,6 @@ $('#startQuiz').on('click', function(){
 
 
 /* $('#buttons').on('click', function(){
-
-
 
 
 }); */
@@ -169,6 +198,7 @@ $("#buttons").delegate(".btn", "click", function(event){
 
   $("#buttons").empty();
   $("#quiz").empty();
+ 
   
  // console.log(questionCount)
 
@@ -195,12 +225,13 @@ function endGame(){
 
   if (questionCount === 4 ){
 
- 
-    $("#buttons").empty();
+    var initials = prompt('Please Enter your Initials')
+    console.log(initials)
+  $("#buttons").empty();
   $("#quiz").empty();
   $('#results').text(' Your Final Score is ' + score);
-  localStorage.setItem("score", score);
-  lastScore()
+  localStorage.setItem("score", score + ' ' + initials);
+  
     
   }
 
@@ -209,11 +240,9 @@ function endGame(){
 
 function lastScore(){
   var lastPoints = localStorage.getItem("score");
-  $('#lastScore').text('Your Previous Score' + lastPoints)
+  $('#lastScore').text('Your Previous Score is ' + lastPoints)
 
 }
-
-
 
 
 
@@ -258,9 +287,6 @@ var timerinterval = setInterval(function(){
 }, 1000);
 
 }
-
-
-
 
     
 });
